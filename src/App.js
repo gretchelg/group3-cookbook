@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="App">
-      <Recipe/>
+      <Recipe recipes={recipes}/>
       {/* {recipes?.map( (recipe) => (
         <div>
         <h1>{recipe.fields.recipeTitle}</h1>
