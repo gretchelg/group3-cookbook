@@ -1,7 +1,7 @@
 import './App.css';
 import { Client } from "./Client"
 import { useState, useEffect } from 'react';
-import {Recipe} from "./components/Recipe"
+import Recipe from "./components/Recipe"
 
 function App() {
   const [recipes, setRecipes] = useState([]);
@@ -17,7 +17,8 @@ function App() {
 
   return (
     <div className="App">
-      {recipes?.map( (recipe) => (
+      <Recipe/>
+      {/* {recipes?.map( (recipe) => (
         <div>
         <h1>{recipe.fields.recipeTitle}</h1>
         <ul>
@@ -35,7 +36,7 @@ function App() {
             </ol>
           </div>
       </div>
-      ))}
+      ))} */}
     </div>
   );
 }
