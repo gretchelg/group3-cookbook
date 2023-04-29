@@ -28,7 +28,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landingpage />} />
         <Route path="/:type" element={<Category />} />
-        <Route path="/recipe" element={<Recipe />} />
+        <Route path="/:type/:id" element={<Recipe />} />
         <Route path="*" element={<Errorpage />} />
       </Routes>
 

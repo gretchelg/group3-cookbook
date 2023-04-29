@@ -1,13 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Client } from "../Client";
-import { Link,useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 export default function Category() {
     const { type } = useParams();
-    console.log(type);
-
     const [recipes, setRecipes] = useState([]);
 
     useEffect(() => {
@@ -25,8 +23,8 @@ export default function Category() {
             {
                 filterByType.map((recipe) => (
                     <div>
-                        {/* <Link to={`./${recipe.fields.type}/${recipe.fields.id}`}> */}
-                        <Link to="./recipe">
+                        <Link to={`./${recipe.fields.id}`}>
+                        {/* <Link to="./recipe"> */}
                         <h1>{recipe.fields.recipeTitle}</h1>
                         </Link>
                         <p>{recipe.fields.type}</p>
