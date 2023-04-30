@@ -22,7 +22,6 @@ function App() {
 
   return (
     <div className="App">
-      <ResponsiveAppBar />
       <Navigation />
 {/* SETUP URL PATH     */}
       <Routes>
