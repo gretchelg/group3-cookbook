@@ -1,23 +1,26 @@
-import './App.css';
-import { Client } from "./Client"
-import { useState, useEffect } from 'react';
-import {Recipe} from "./components/Recipe"
+import "./App.css";
+import { Client } from "./Client";
+import { useState, useEffect } from "react";
+import Category from "./components/Category";
 
 function App() {
   const [recipes, setRecipes] = useState([]);
-  console.log(recipes);
+  // console.log(recipes);
 
   useEffect(() => {
-    Client.getEntries().then((data) => {
-      console.log(data.items)
-      setRecipes(data.items)
-      }).catch((error) => console.log(error));
-  }, [])
-  // const arrayIngredients = recipe.fields.ingredients 
+    Client.getEntries()
+      .then((data) => {
+        // console.log(data.items);
+        setRecipes(data.items);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+  // const arrayIngredients = recipe.fields.ingredients
 
   return (
     <div className="App">
-      {recipes?.map( (recipe) => (
+      <Category recipes={{ recipes }} />
+      {/* {recipes?.map( (recipe) => (
         <div>
         <h1>{recipe.fields.recipeTitle}</h1>
         <ul>
@@ -35,7 +38,7 @@ function App() {
             </ol>
           </div>
       </div>
-      ))}
+      ))} */}
     </div>
   );
 }
