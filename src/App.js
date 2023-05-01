@@ -7,27 +7,27 @@ import Landingpage from "./components/Landingpage";
 import Category from "./components/Category";
 import Navigation from "./components/Navigation";
 import Errorpage from "./components/Errorpage";
-import ResponsiveAppBar from './components/ResponsiveAppBar';
 
 
 function App() {
-  // const [recipes, setRecipes] = useState([]);
+  const [recipes, setRecipes] = useState([]);
 
-  // useEffect(() => {
-  //   Client.getEntries().then((data) => {
-  //     console.log(data.items)
-  //     setRecipes(data.items)
-  //     }).catch((error) => console.log(error));
-  // }, [])
+  useEffect(() => {
+    Client.getEntries().then((data) => {
+      console.log(data.items)
+      setRecipes(data.items)
+      }).catch((error) => console.log(error));
+  }, [])
 
   return (
     <div className="App">
+
       <Navigation />
 {/* SETUP URL PATH     */}
       <Routes>
         <Route path="/" element={<Landingpage />} />
-        <Route path="/:type" element={<Category />} />
-        <Route path="/:type/:id" element={<Recipe />} />
+        <Route path="/:type" element={<Category recipes = {recipes} />} />
+        <Route path="/:type/:id" element={<Recipe recipes = {recipes} />} />
         <Route path="*" element={<Errorpage />} />
       </Routes>
 

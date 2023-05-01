@@ -13,7 +13,6 @@ import MenuItem from '@mui/material/MenuItem';
 import { Link } from "react-router-dom";
 
 const pages = ['breakfast', 'lunch', 'dinner'];
-// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export default function Navigation() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -22,9 +21,6 @@ export default function Navigation() {
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
-    // const handleOpenUserMenu = (event) => {
-    //     setAnchorElUser(event.currentTarget);
-    // };
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
@@ -104,7 +100,7 @@ export default function Navigation() {
                         component="a"
                         // href=""
                         sx={{
-                        mr: 2,
+                        mr: 40,
                         display: { xs: 'flex', md: 'none' },
                         flexGrow: 2,
                         fontFamily: 'Pacifico',
@@ -119,13 +115,15 @@ export default function Navigation() {
                 
                 <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                     {pages.map((page) => (
-                    <Button
-                        key={page}
-                        onClick={handleCloseNavMenu}
-                        sx={{ my: 1, color: 'black', display: 'block' }}
-                    >
-                        {page}
-                    </Button>
+                    <Link to={`./${page}`}>
+                        <Button
+                            key={page}
+                            onClick={handleCloseNavMenu}
+                            sx={{ my: 1, color: 'black', display: 'block' }}
+                        >
+                            {page}
+                        </Button>
+                    </Link>  
                     ))}
                 </Box>
         
@@ -153,7 +151,6 @@ export default function Navigation() {
             </AppBar>
 
             <NavLink to="/">  - HOME - | </NavLink>
-            <NavLink to="/recipe"> - ALL RECIPES - </NavLink>
 
         </div>
 

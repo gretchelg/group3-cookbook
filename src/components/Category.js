@@ -4,15 +4,9 @@ import { Client } from "../Client";
 import { Link } from "react-router-dom";
 
 
-export default function Category() {
+export default function Category({recipes}) {
     const { type } = useParams();
-    const [recipes, setRecipes] = useState([]);
-
-    useEffect(() => {
-    Client.getEntries().then((data) => {
-        setRecipes(data.items)
-        }).catch((error) => console.log(error));
-    }, [])
+    console.log("cookbook:", recipes);
 
     const filterByType = recipes?.filter((recipe) => recipe.fields.type === type); 
     console.log("array: ", filterByType)
@@ -24,7 +18,6 @@ export default function Category() {
                 filterByType.map((recipe) => (
                     <div>
                         <Link to={`./${recipe.fields.id}`}>
-                        {/* <Link to="./recipe"> */}
                         <h1>{recipe.fields.recipeTitle}</h1>
                         </Link>
                         <p>{recipe.fields.type}</p>
