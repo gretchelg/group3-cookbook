@@ -52,7 +52,7 @@ export default function LandingPage() {
   }));
 
   return (
-    <Container  sx={{ backgroundColor: '#FFD230', height: '100%', padding: '2rem', display: 'flex', alignItems: 'flex-start', boxSizing: 'border-box' }}>
+    <Container maxWidth={false}  sx={{ backgroundColor: '#FFD230', height: '100%', padding: '2rem', display: 'flex', alignItems: 'flex-start', boxSizing: 'border-box' }}>
       <Grid container spacing={3} alignItems="flex-start" justifyContent="flex-start">
         <Grid item xs={12} md={3}>
         {/* <Grid item xs={isLargeScreen ? false : 12} md={isLargeScreen ? false : 3} lg={isLargeScreen ? true : false}> */}
