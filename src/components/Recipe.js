@@ -1,6 +1,6 @@
 export default function Recipe() {
     return (
-        <div></div>
+        <div>Recipe Page</div>
 
     );
 }
