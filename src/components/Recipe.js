@@ -1,9 +1,6 @@
 import { Box, List, ListItem, ListItemText, Typography, Container, Divider, Rating} from '@mui/material'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 
-const theme = createTheme({
-
-    });
 
 export default function Recipe(props) {
     console.log("Timo", props)
