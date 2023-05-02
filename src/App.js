@@ -1,7 +1,10 @@
 import './App.css';
 import { Client } from "./Client"
 import { useState, useEffect } from 'react';
-import {Recipe} from "./components/Recipe"
+import Landingpage from './components/Landingpage';
+
+
+
 
 function App() {
   const [recipes, setRecipes] = useState([]);
@@ -17,6 +20,8 @@ function App() {
 
   return (
     <div className="App">
+      
+      <Landingpage/>
       {recipes?.map( (recipe) => (
         <div>
         <h1>{recipe.fields.recipeTitle}</h1>
