@@ -21,7 +21,6 @@ function App() {
 
   return (
     <div className="App">
-
       <Navigation />
 {/* SETUP URL PATH     */}
       <Routes>
@@ -30,6 +29,7 @@ function App() {
         <Route path="/:type/:id" element={<Recipe recipes = {recipes} />} />
         <Route path="*" element={<Errorpage />} />
       </Routes>
+
 
 
 
