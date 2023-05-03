@@ -1,29 +1,22 @@
 import {  Button, Card, CardContent, CardMedia, Container, Grid, Typography, Box } from '@mui/material';
 import { styled } from '@mui/system';
-// import { useTheme }  from '@mui/material/styles';
-// import useMediaQuery from '@mui/material/useMediaQuery';
-
-
+import { Link } from "react-router-dom";
 
 
 export default function LandingPage() {
-
-  // const theme = useTheme();
-  // const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
-
   const meals = [
     {
-      title: 'Breakfast',
+      title: 'breakfast',
       description: 'Packed with flavor and cooked to perfection',
       imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ03VKnptPZFv2hp3hRi5sWA4GtSwyC0uxt1XQTUQQpZLLN36KQFkmTV8UzSWtMm0_nnI&usqp=CAU',
     },
     {
-      title: 'Lunch',
+      title: 'lunch',
       description: 'Packed with flavor and cooked to perfection',
       imageUrl: 'https://cdn.loveandlemons.com/wp-content/uploads/2018/01/lunch-ideas-500x375.jpg',
     },
     {
-      title: 'Dinner',
+      title: 'dinner',
       description: 'Packed with flavor and cooked to perfection',
       imageUrl: 'https://i.insider.com/5c470a9fdde8673fd17090c7?width=700',
     },
@@ -81,6 +74,7 @@ export default function LandingPage() {
 
       {meals.map((meal, index) => (
       <Grid item xs={12} sm={6} md={3} key={index} style={{ marginBottom: '2rem' }}>
+        <Link to={`./${meal.title}`}>
       <CardBox mealtype={meal.title}>
             <CardMedia
               component="img"
@@ -92,7 +86,7 @@ export default function LandingPage() {
         <Card
               sx={{
                 height: '100%',
-                borderRadius: '1rem',
+                // borderRadius: '1rem',
                 overflow: 'hidden',
               }}
             >
@@ -114,6 +108,7 @@ export default function LandingPage() {
           </CardContent>
         </Card>
       </CardBox>
+      </Link>
     </Grid>
         ))}
   </Grid>

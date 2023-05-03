@@ -100,7 +100,7 @@ export default function Navigation() {
                         component="a"
                         // href=""
                         sx={{
-                        mr: 40,
+                        mr: 30,
                         display: { xs: 'flex', md: 'none' },
                         flexGrow: 2,
                         fontFamily: 'Pacifico',
@@ -150,7 +150,7 @@ export default function Navigation() {
             </Container>
             </AppBar>
 
-            <NavLink to="/">  - HOME - | </NavLink>
+            {/* <NavLink to="/">  - HOME - | </NavLink> */}
 
         </div>
 
