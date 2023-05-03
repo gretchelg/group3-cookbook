@@ -24,7 +24,7 @@ function App() {
       <Navigation />
 {/* SETUP URL PATH     */}
       <Routes>
-        <Route path="/" element={<Landingpage />} />
+        <Route path="/" element={<Landingpage recipes = {recipes}/>} />
         <Route path="/:type" element={<Category recipes = {recipes} />} />
         <Route path="/:type/:id" element={<Recipe recipes = {recipes} />} />
         <Route path="*" element={<Errorpage />} />

@@ -8,7 +8,7 @@ export default function Recipe({recipes}) {
 
     return (
     <> 
-        <Container maxWidth="lg" sx={{display: "flex", gap: "50px", backgroundColor: "#fad107", borderRadius: "30px"}} >
+        <Container sx={{display: "flex", gap: "50px"}} >
             <Box flexDirection="column" marginTop="20px">
                 <img src='https://placehold.co/400x300' alt='recipe'/>
                 <Typography variant="h5">
@@ -49,6 +49,7 @@ export default function Recipe({recipes}) {
                 </Box>   
             </Box>
         </Container> 
+        
     </>
     );
 }

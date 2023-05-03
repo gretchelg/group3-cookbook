@@ -8,8 +8,8 @@ span.categorySpan {
   color: #ddaa00;
 }
 .categoryImg {
-  width: 100%;
-  height: 20rem;
+  height: 12rem; 
+  width: 100%; 
   transition: filter 0.5s ease-in-out;
 }
 .gridItem:hover {
