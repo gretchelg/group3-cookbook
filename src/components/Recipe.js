@@ -3,8 +3,9 @@ import { useParams } from 'react-router-dom';
 
 export default function Recipe({recipes}) {
     const { id } = useParams();
-
     const singleRecipe = recipes?.find((recipe) => recipe.fields.id === id); 
+
+    console.log({id, recipes, singleRecipe})
 
     return (
     <> 
@@ -14,7 +15,7 @@ export default function Recipe({recipes}) {
                 <Typography variant="h5">
                     Ingredients
                 </Typography>
-                {singleRecipe.fields.ingredients.map ((item) => (
+                {singleRecipe?.fields.ingredients.map ((item) => (
                     <List>
                         <ListItem>
                             <ListItemText primary={item}/>
@@ -25,14 +26,14 @@ export default function Recipe({recipes}) {
                 </Box>
                 <Box display="flex" gap="50px" flexDirection="column">
                     <Typography variant="h3" sx={{marginTop: "50px"}}>
-                        {singleRecipe.fields.recipeTitle}
+                        {singleRecipe?.fields.recipeTitle}
                     </Typography>
                     <Typography variant="p">
-                        {singleRecipe.fields.description}
+                        {singleRecipe?.fields.description}
                     </Typography>
                         <Box display="flex" flexDirection="row" gap="50px">
                             <Typography variant='p'>
-                                Preparation: {singleRecipe.fields.preparation}
+                                Preparation: {singleRecipe?.fields.preparation}
                             </Typography>
                             <Typography variant='p'>
                                 Portions: 2 pers
@@ -44,7 +45,7 @@ export default function Recipe({recipes}) {
                         Instructions
                     </Typography>
                     <Typography variant='p'>
-                        {singleRecipe.fields.instructions}
+                        {singleRecipe?.fields.instructions}
                     </Typography>
                 </Box>   
             </Box>

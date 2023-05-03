@@ -85,7 +85,7 @@ export default function Navigation() {
                     }}
                     >
                     {pages.map((page) => (
-                        <MenuItem key={page} onClick={handleCloseNavMenu}>
+                        <MenuItem onClick={handleCloseNavMenu}>
                         <Typography textAlign="center">
                         <Link to={`./${page}`}>{page}</Link>    
                         </Typography>
