@@ -10,12 +10,12 @@ export default function Recipe({recipes}) {
     <> 
         <Container sx={{display: "flex", gap: "50px"}} >
             <Box flexDirection="column" marginTop="20px">
-                <img src='https://placehold.co/400x300' alt='recipe'/>
+                <img src={singleRecipe?.fields.pic.fields?.file.url} alt='recipe'/>
                 <Typography variant="h5">
                     Ingredients
                 </Typography>
-                {singleRecipe.fields.ingredients.map ((item) => (
-                    <List>
+                {singleRecipe?.fields.ingredients.map ((item, index) => (
+                    <List key={index}>
                         <ListItem>
                             <ListItemText primary={item}/>
                         </ListItem>
@@ -25,26 +25,29 @@ export default function Recipe({recipes}) {
                 </Box>
                 <Box display="flex" gap="50px" flexDirection="column">
                     <Typography variant="h3" sx={{marginTop: "50px"}}>
-                        {singleRecipe.fields.recipeTitle}
+                        {singleRecipe?.fields.recipeTitle}
                     </Typography>
                     <Typography variant="p">
-                        {singleRecipe.fields.description}
+                        {singleRecipe?.fields.description}
                     </Typography>
                         <Box display="flex" flexDirection="row" gap="50px">
                             <Typography variant='p'>
-                                Preparation: {singleRecipe.fields.preparation}
+                                Preparation: {singleRecipe?.fields.preparation}
                             </Typography>
                             <Typography variant='p'>
                                 Portions: 2 pers
                             </Typography>
-                            <Rating name="read-only" value={4.5} precision={0.5} readOnly />
+                            <Rating
+                            value={singleRecipe?.fields.rating ?? 4}
+                            readOnly 
+                            />
                         </Box>
                 <Box>
                     <Typography variant='h5'>
                         Instructions
                     </Typography>
-                    <Typography variant='p'>
-                        {singleRecipe.fields.instructions}
+                    <Typography>
+                        {singleRecipe?.fields.instructions}
                     </Typography>
                 </Box>   
             </Box>
