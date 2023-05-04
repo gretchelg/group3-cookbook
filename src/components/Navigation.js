@@ -10,6 +10,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
+import { styled } from '@mui/system';
 
 const pages = ['breakfast', 'lunch', 'dinner'];
 
@@ -27,6 +28,11 @@ export default function Navigation() {
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
+    };
+
+    const menuStyles = {
+        // Customize the background color here
+        backgroundColor: "red",
     };
 
     return (
@@ -84,6 +90,15 @@ export default function Navigation() {
                     onClose={handleCloseNavMenu}
                     sx={{
                         display: { xs: 'block', md: 'none' },
+                    }}
+                    PaperProps={{
+                        sx: {
+                          // Override the Paper component styles here
+                        backgroundColor: '#FFD230',
+                        borderRadius: '1px',
+                        textDecoration: 'none',
+                        },
+                        styles: menuStyles,
                     }}
                     >
                     {pages.map((page) => (
