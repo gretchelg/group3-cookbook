@@ -20,7 +20,22 @@
   color: sienna;
 }
 
+/* .MuiMenu-paper * {
+  background-color: #FFD230;
+}
 
+ul.MuiList-root {
+  color: black;
+} */
+
+.css-1ka5eyc-MuiPaper-root-MuiMenu-paper-MuiPopover-paper {
+  background-color: #FFD230;
+}
+
+p.MuiTypography-root * {
+  background-color: none;
+  color: rgba(0, 0, 0, 0.87);
+}
 /* .App {
   text-align: center;
 }

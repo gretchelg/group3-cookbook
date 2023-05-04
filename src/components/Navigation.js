@@ -10,7 +10,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from "react-router-dom";
 
 const pages = ['breakfast', 'lunch', 'dinner'];
 
@@ -32,7 +31,7 @@ export default function Navigation() {
 
     return (
         <div className="navbar">
-            <AppBar position="static" style={{ background: '#FFD230' }}>
+            <AppBar position="static" style={{ backgroundColor: '#FFD230' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                 {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
@@ -48,12 +47,13 @@ export default function Navigation() {
                         fontFamily: 'Pacifico',
                         fontWeight: 700,
                         color: '#050505',
-                        textDecoration: 'none',
+                        textDecoration: 'none'
                         }}
                     >
                         The Sunday Bites
                     </Typography>
                 </NavLink>
+
         
                 <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                     <IconButton
@@ -67,7 +67,7 @@ export default function Navigation() {
                     <MenuIcon />
                     </IconButton>
                     <Menu
-                    id="menu-appbar"
+                    id="menu-appbar" 
                     anchorEl={anchorElNav}
                     anchorOrigin={{
                         vertical: 'bottom',
@@ -77,8 +77,10 @@ export default function Navigation() {
                     transformOrigin={{
                         vertical: 'top',
                         horizontal: 'left',
+                        backgroundColor: '#FFD230'
                     }}
                     open={Boolean(anchorElNav)}
+
                     onClose={handleCloseNavMenu}
                     sx={{
                         display: { xs: 'block', md: 'none' },
@@ -86,8 +88,8 @@ export default function Navigation() {
                     >
                     {pages.map((page) => (
                         <MenuItem onClick={handleCloseNavMenu}>
-                        <Typography textAlign="center">
-                        <Link to={`./${page}`}>{page}</Link>    
+                        <Typography textAlign="center" sx={{ textDecoration: 'none'}}>
+                        <NavLink to={`./${page}`}>{page}</NavLink>    
                         </Typography>
                         </MenuItem>
                     ))}
@@ -115,7 +117,7 @@ export default function Navigation() {
                 
                 <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                     {pages.map((page) => (
-                    <Link to={`./${page}`}>
+                    <NavLink to={`./${page}`}>
                         <Button
                             key={page}
                             onClick={handleCloseNavMenu}
@@ -123,7 +125,7 @@ export default function Navigation() {
                         >
                             {page}
                         </Button>
-                    </Link>  
+                    </NavLink>  
                     ))}
                 </Box>
         

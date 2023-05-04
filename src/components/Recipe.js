@@ -6,6 +6,9 @@ export default function Recipe({recipes}) {
     const singleRecipe = recipes?.find((recipe) => recipe.fields.id === id); 
 
     console.log({id, recipes, singleRecipe})
+    console.log("instructions:", singleRecipe?.fields.instructions);
+    const arrayofInstructions = singleRecipe?.fields.instructions.split(".");
+    console.log("Steps:", arrayofInstructions);
 
     return (
     <> 

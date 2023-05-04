@@ -8,7 +8,7 @@ span.categorySpan {
   color: #ddaa00;
 }
 .categoryImg {
-  height: 12rem; 
+  height: 15rem; 
   width: 100%; 
   transition: filter 0.5s ease-in-out;
 }
