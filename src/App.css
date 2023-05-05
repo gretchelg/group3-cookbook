@@ -28,3 +28,15 @@ a:link {
   color: #000000;
   text-decoration: none;
 }
+
+.errorpage {
+  background-color: #FFD230;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.imglogo {
+  margin-left: 45%;
+}

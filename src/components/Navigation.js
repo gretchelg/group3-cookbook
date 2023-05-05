@@ -10,7 +10,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import { styled } from '@mui/system';
 
 const pages = ['breakfast', 'lunch', 'dinner'];
 
@@ -117,7 +116,7 @@ export default function Navigation() {
                         component="a"
                         // href=""
                         sx={{
-                        mr: 30,
+                        mr: 15,
                         display: { xs: 'flex', md: 'none' },
                         flexGrow: 2,
                         fontFamily: 'Pacifico',

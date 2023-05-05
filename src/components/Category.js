@@ -5,17 +5,12 @@ import "./Category.css";
 
 export default function Category({recipes}) {
     const { type } = useParams();
-    console.log("X type: ", type)
-    console.log("cookbook:", recipes);
-
     const navigate = useNavigate();
     if (!["breakfast", "lunch", "dinner"].includes(type)){
       navigate("/oops");
     }
 
     const filterByType = recipes?.filter((recipe) => recipe.fields.type === type); 
-    
-    console.log("array: ", filterByType)
 
     return (
       <div className="navbar">
