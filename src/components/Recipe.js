@@ -7,14 +7,18 @@ import LocalDiningIcon from '@mui/icons-material/LocalDining';
 export default function Recipe({recipes}) {
     const { id } = useParams();
 
-    const singleRecipe = recipes?.find((recipe) => recipe.fields.id === id); 
+    const singleRecipe = recipes?.find((recipe) => recipe.fields.id === id);
+    console.log({id, recipes, singleRecipe})
+    console.log("instructions:", singleRecipe?.fields.instructions);
+    const arrayofInstructions = singleRecipe?.fields.instructions.split("\n");
+    console.log("Steps:", arrayofInstructions); 
 
     return (
     <> 
         <Container sx={{display: "flex", gap: "50px"}} >
             <Box flexDirection="column" marginTop="20px">
-                <img src={singleRecipe?.fields.pic.fields?.file.url} alt='recipe'/>
-                <Typography variant="h5">
+                <img src={singleRecipe?.fields.pic.fields?.file.url} alt={singleRecipe?.fields.recipeTitle}/>
+                <Typography variant="h5" sx={{paddingTop: "20px"}}>
                     Ingredients
                 </Typography>
                 {singleRecipe?.fields.ingredients.map ((item, index) => (
@@ -53,9 +57,15 @@ export default function Recipe({recipes}) {
                     <Typography variant='h5'>
                         Instructions
                     </Typography>
-                    <Typography variant='body1'>
-                        {singleRecipe?.fields.instructions}
-                    </Typography>
+                    
+                        {arrayofInstructions?.map((step, i) => (
+                            <List>
+                            <ListItem key={i} disablePadding={true}>
+                            <ListItemText primary={step}/>
+                            </ListItem>
+                            <Divider/>
+                            </List> 
+                        ))}
                 </Box>   
             </Box>
         </Container> 
