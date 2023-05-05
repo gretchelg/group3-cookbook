@@ -62,7 +62,7 @@ export default function LandingPage() {
             gutterBottom
             sx={{
                 marginBottom: '2rem',
-                marginTop: '10rem',
+                marginTop: '5rem',
                 textAlign: 'center',
                 transition: 'all 0.3s ease',
                 '&:hover': { transform: 'scale(1.1)' },
