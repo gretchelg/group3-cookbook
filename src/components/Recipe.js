@@ -15,7 +15,7 @@ export default function Recipe({recipes}) {
 
     return (
     <> 
-        <Container sx={{display: "flex", gap: "50px"}} >
+        <Container maxWidth="lg" sx={{display: "flex", gap: "50px", flexWrap: "wrap"}} >
             <Box flexDirection="column" marginTop="20px">
                 <img src={singleRecipe?.fields.pic.fields?.file.url} alt={singleRecipe?.fields.recipeTitle}/>
                 <Typography variant="h5" sx={{paddingTop: "20px"}}>
@@ -30,7 +30,7 @@ export default function Recipe({recipes}) {
                     </List>
                 ))}
                 </Box>
-                <Box display="flex" gap="50px" flexDirection="column">
+                <Box display="flex" gap="50px" flexDirection="column" maxWidth="600px">
                     <Typography variant="h3" sx={{marginTop: "50px"}}>
                         {singleRecipe?.fields.recipeTitle}
                     </Typography>
@@ -50,6 +50,7 @@ export default function Recipe({recipes}) {
                             </Box>
                             <Rating
                             value={singleRecipe?.fields.rating ?? 4}
+                            precision={0.5}
                             readOnly 
                             />
                         </Box>
