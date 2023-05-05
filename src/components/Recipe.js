@@ -1,23 +1,30 @@
 import { Box, List, ListItem, ListItemText, Typography, Container, Divider, Rating} from '@mui/material'
 import { useParams } from 'react-router-dom';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import RestaurantIcon from '@mui/icons-material/Restaurant';
+import LocalDiningIcon from '@mui/icons-material/LocalDining';
 
 export default function Recipe({recipes}) {
     const { id } = useParams();
 
-    const singleRecipe = recipes?.find((recipe) => recipe.fields.id === id); 
+    const singleRecipe = recipes?.find((recipe) => recipe.fields.id === id);
+    console.log({id, recipes, singleRecipe})
+    console.log("instructions:", singleRecipe?.fields.instructions);
+    const arrayofInstructions = singleRecipe?.fields.instructions.split("\n");
+    console.log("Steps:", arrayofInstructions); 
 
     return (
     <> 
         <Container sx={{display: "flex", gap: "50px"}} >
             <Box flexDirection="column" marginTop="20px">
-                <img src='https://placehold.co/400x300' alt='recipe'/>
-                <Typography variant="h5">
+                <img src={singleRecipe?.fields.pic.fields?.file.url} alt={singleRecipe?.fields.recipeTitle}/>
+                <Typography variant="h5" sx={{paddingTop: "20px"}}>
                     Ingredients
                 </Typography>
-                {singleRecipe.fields.ingredients.map ((item) => (
-                    <List>
-                        <ListItem>
-                            <ListItemText primary={item}/>
+                {singleRecipe?.fields.ingredients.map ((item, index) => (
+                    <List key={index} disablePadding={true}>
+                        <ListItem sx={{padding: "5px"}}>
+                            <LocalDiningIcon sx={{color: '#fad107'}}/><ListItemText primary={item} sx={{paddingLeft: "10px"}}/>
                         </ListItem>
                         <Divider />
                     </List>
@@ -25,27 +32,40 @@ export default function Recipe({recipes}) {
                 </Box>
                 <Box display="flex" gap="50px" flexDirection="column">
                     <Typography variant="h3" sx={{marginTop: "50px"}}>
-                        {singleRecipe.fields.recipeTitle}
+                        {singleRecipe?.fields.recipeTitle}
                     </Typography>
-                    <Typography variant="p">
-                        {singleRecipe.fields.description}
+                    <Typography variant="body1">
+                        {singleRecipe?.fields.description}
                     </Typography>
-                        <Box display="flex" flexDirection="row" gap="50px">
-                            <Typography variant='p'>
-                                Preparation: {singleRecipe.fields.preparation}
+                        <Box display="flex" flexDirection="row" gap="50px" alignItems={"center"}>
+                            <Box display="flex" gap="10px" alignItems={"center"} sx={{backgroundColor: '#fad107', padding: "20px 10px 20px 10px"}}>
+                            <AccessTimeIcon/>
+                            <Typography variant='body1'>
+                            {singleRecipe?.fields.preparation}
                             </Typography>
-                            <Typography variant='p'>
-                                Portions: 2 pers
-                            </Typography>
-                            <Rating name="read-only" value={4.5} precision={0.5} readOnly />
+                            <RestaurantIcon/>
+                            <Typography variant='body1'>
+                            2 pers
+                            </Typography> 
+                            </Box>
+                            <Rating
+                            value={singleRecipe?.fields.rating ?? 4}
+                            readOnly 
+                            />
                         </Box>
-                <Box>
+                <Box sx={{backgroundColor: 'lightgrey', padding: "20px"}}>
                     <Typography variant='h5'>
                         Instructions
                     </Typography>
-                    <Typography variant='p'>
-                        {singleRecipe.fields.instructions}
-                    </Typography>
+                    
+                        {arrayofInstructions?.map((step, i) => (
+                            <List>
+                            <ListItem key={i} disablePadding={true}>
+                            <ListItemText primary={step}/>
+                            </ListItem>
+                            <Divider/>
+                            </List> 
+                        ))}
                 </Box>   
             </Box>
         </Container> 
