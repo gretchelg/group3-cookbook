@@ -27,6 +27,7 @@ function App() {
         <Route path="/" element={<Landingpage recipes = {recipes}/>} />
         <Route path="/:type" element={<Category recipes = {recipes} />} />
         <Route path="/:type/:id" element={<Recipe recipes = {recipes} />} />
+        <Route path="/oops" element={<Errorpage />} />
         <Route path="*" element={<Errorpage />} />
       </Routes>
     </div>
