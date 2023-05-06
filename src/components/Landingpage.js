@@ -4,8 +4,11 @@ import { NavLink } from "react-router-dom";
 import breakfast from "../images/breakfast.png"
 import lunch from "../images/lunch.png";
 import dinner from "../images/dinner.png";
+import { useState } from 'react';
 
 export default function LandingPage() {
+  const [showAllRecipes, setShowAllRecipes] = useState(false);
+
   const meals = [
     {
       title: 'breakfast',
@@ -46,9 +49,13 @@ export default function LandingPage() {
     },
   }));
 
+  const handleButtonClick = () => {
+    setShowAllRecipes(true);
+  };
+
   return (
     // <Container maxWidth={false}  sx={{ backgroundColor: '#FFD230', height: '100%', padding: '2rem', display: 'flex', alignItems: 'flex-start', boxSizing: 'border-box' }}>
-    <Container maxWidth="xl"  sx={{ backgroundColor: '#FFD230', minHeight: '100vh', padding: '2rem', display: 'flex', alignItems: 'flex-start', boxSizing: 'border-box' }}>
+    <Container maxWidth={false} sx={{ backgroundColor: '#FFD230', minHeight: '100vh', padding: '2rem', display: 'flex', alignItems: 'flex-start', boxSizing: 'border-box' }}>
       <Grid container spacing={3} alignItems="flex-start" justifyContent="flex-start">
         <Grid item xs={12} md={3}>
         {/* <Grid item xs={isLargeScreen ? false : 12} md={isLargeScreen ? false : 3} lg={isLargeScreen ? true : false}> */}
@@ -70,9 +77,12 @@ export default function LandingPage() {
         </Typography>
 
         <Grid container justifyContent="center">
-            <CustomButton variant="contained" color="primary"  style={{backgroundColor: '#000000'}}>
+          <NavLink to="./allrecipes">
+            <CustomButton variant="contained" color="primary"  style={{backgroundColor: '#000000'}}
+            onClick={handleButtonClick}>
               Jump to recipe
             </CustomButton>
+          </NavLink>  
           </Grid>
         </Grid>
 
