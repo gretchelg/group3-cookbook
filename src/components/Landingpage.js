@@ -8,6 +8,7 @@ import { useState } from 'react';
 
 export default function LandingPage() {
   const [showAllRecipes, setShowAllRecipes] = useState(false);
+  console.log(showAllRecipes);
 
   const meals = [
     {
