@@ -7,6 +7,7 @@ import Landingpage from "./components/Landingpage";
 import Category from "./components/Category";
 import Navigation from "./components/Navigation";
 import Errorpage from "./components/Errorpage";
+import Allrecipes from './components/Allrecipes';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
 {/* SETUP URL PATH     */}
       <Routes>
         <Route path="/" element={<Landingpage recipes = {recipes}/>} />
+        <Route path="/allrecipes" element={<Allrecipes recipes = {recipes}/>} />
         <Route path="/:type" element={<Category recipes = {recipes} />} />
         <Route path="/:type/:id" element={<Recipe recipes = {recipes} />} />
         <Route path="/oops" element={<Errorpage />} />
