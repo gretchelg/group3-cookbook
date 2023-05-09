@@ -6,14 +6,14 @@ import lunch from "../images/lunch.png";
 import dinner from "../images/dinner.png";
 import { useState } from 'react';
 
-export default function LandingPage() {
+export default function LandingPage({theme}) {
   const [showAllRecipes, setShowAllRecipes] = useState(false);
   console.log(showAllRecipes);
 
   const meals = [
     {
       title: 'breakfast',
-      description: 'Start Your Day Right With Quick and Healthy Breakfast Ideas ',
+      description: 'Start Your Day With Quick Breakfast Ideas',
       imageUrl: `${breakfast}`,
     },
     {
@@ -56,7 +56,7 @@ export default function LandingPage() {
 
   return (
     // <Container maxWidth={false}  sx={{ backgroundColor: '#FFD230', height: '100%', padding: '2rem', display: 'flex', alignItems: 'flex-start', boxSizing: 'border-box' }}>
-    <Container maxWidth={false} sx={{ backgroundColor: '#FFD230', minHeight: '100vh', padding: '2rem', display: 'flex', alignItems: 'flex-start', boxSizing: 'border-box' }}>
+    <Container maxWidth={false} sx={theme? {backgroundColor: '#darkgrey', minHeight: '100vh', padding: '2rem', display: 'flex', alignItems: 'flex-start', boxSizing: 'border-box' }: { backgroundColor: '#FFD230', minHeight: '100vh', padding: '2rem', display: 'flex', alignItems: 'flex-start', boxSizing: 'border-box' }}>
       <Grid container spacing={3} alignItems="flex-start" justifyContent="flex-start">
         <Grid item xs={12} md={3}>
         {/* <Grid item xs={isLargeScreen ? false : 12} md={isLargeScreen ? false : 3} lg={isLargeScreen ? true : false}> */}
@@ -79,7 +79,7 @@ export default function LandingPage() {
 
         <Grid container justifyContent="center">
           <NavLink to="./allrecipes">
-            <CustomButton variant="contained" color="primary"  style={{backgroundColor: '#000000'}}
+            <CustomButton variant="contained" color="primary"  style={theme ? {backgroundColor: '#FFD230'} : {backgroundColor: '#000'}}
             onClick={handleButtonClick}>
               Jump to recipe
             </CustomButton>
