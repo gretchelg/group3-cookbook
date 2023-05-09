@@ -10,10 +10,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 const pages = ['breakfast', 'lunch', 'dinner'];
 
-export default function Navigation() {
+export default function Navigation({theme, toggletheme}) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -67,7 +68,7 @@ export default function Navigation() {
                     aria-controls="menu-appbar"
                     aria-haspopup="true"
                     onClick={handleOpenNavMenu}
-                    color= "#050505"
+                    color={toggletheme ? '#000' : '#fff'}
                     >
                     <MenuIcon />
                     </IconButton>
@@ -162,7 +163,10 @@ export default function Navigation() {
                     >
                     </Menu>
                 </Box>
+                {console.log(theme)}
+                <DarkModeIcon onClick={theme} sx={toggletheme? {color: '#fff'} : {color: '#000'}}/>
                 </Toolbar>
+                
             </Container>
             </AppBar>
 

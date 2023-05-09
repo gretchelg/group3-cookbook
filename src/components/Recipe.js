@@ -4,7 +4,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 
-export default function Recipe({recipes}) {
+export default function Recipe({recipes, theme}) {
     const { id } = useParams();
     const singleRecipe = recipes?.find((recipe) => recipe.fields.id === id);
     const arrayofInstructions = singleRecipe?.fields.instructions.split("\n");
@@ -50,7 +50,8 @@ export default function Recipe({recipes}) {
                             readOnly 
                             />
                         </Box>
-                <Box sx={{backgroundColor: 'lightgrey', padding: "20px"}}>
+                        {console.log(theme)}
+                <Box sx={theme? {backgroundColor: '#252525', padding: "20px"} : {backgroundColor: 'lightgrey', padding: "20px"} }>
                     <Typography variant='h5'>
                         Instructions
                     </Typography>
