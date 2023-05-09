@@ -54,7 +54,7 @@ function App() {
         <Route path="/oops" element={<Errorpage />} />
         <Route path="*" element={<Errorpage />} />
       </Routes>
-    </div>
+    </div> 
     </ThemeProvider>
     
   );

@@ -1,14 +1,21 @@
 import { Box, List, ListItem, ListItemText, Typography, Container, Divider, Rating} from '@mui/material'
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 
 export default function Recipe({recipes, theme}) {
     const { id } = useParams();
-    const singleRecipe = recipes?.find((recipe) => recipe.fields.id === id);
-    const arrayofInstructions = singleRecipe?.fields.instructions.split("\n");
+    const navigate = useNavigate();
     
+    const singleRecipe = recipes?.find((recipe) => recipe.fields.id === id);
+    
+    if (singleRecipe?.fields.id === undefined) {
+    navigate("/oops");
+    }
+    console.log(singleRecipe?.fields.id)
+    const arrayofInstructions = singleRecipe?.fields.instructions.split("\n");
+
     return (
     <> 
         <Container maxWidth="lg" sx={{display: "flex", gap: "50px", flexWrap: "wrap"}} >
