@@ -10,8 +10,6 @@ import Allrecipes from './components/Allrecipes';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
-
-
 function App() {
   const [recipes, setRecipes] = useState([]);
   const [theme, setTheme] = useState(false)
@@ -51,8 +49,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Landingpage recipes = {recipes} theme={theme}/>} />
         <Route path="/allrecipes" element={<Allrecipes recipes = {recipes} theme={theme}/>} />
-        <Route path="/:type" element={<Category recipes = {recipes} />} />
-        <Route path="/:type/:id" element={<Recipe recipes = {recipes} theme={theme}/>} />
+        <Route path="/:type" element={<Category />} />
+        <Route path="/:type/:id" element={<Recipe theme={theme}/>} />
         <Route path="/oops" element={<Errorpage />} />
         <Route path="*" element={<Errorpage />} />
       </Routes>

@@ -1,15 +1,26 @@
 import { useParams, useNavigate } from "react-router-dom";
+import { useState, useEffect } from 'react';
 import { NavLink } from "react-router-dom";
 import { Container, Typography, Grid, Paper } from "@mui/material";
 import "./Category.css";
 
-export default function Category({recipes}) {
+  export default function Category() {
+    const [recipes, setRecipes] = useState([]);
     const { type } = useParams();
     const navigate = useNavigate();
     if (!["breakfast", "lunch", "dinner"].includes(type)){
       navigate("/oops");
     }
-    const filterByType = recipes?.filter((recipe) => recipe.type === type); 
+
+    useEffect(() => {
+      const fetchData = async () => {
+      const res = await fetch(`http://localhost:5001/api/${type}`)
+      const data = await res.json();
+      console.log("by type:", data)
+      setRecipes(data)
+      }
+      fetchData();
+    }, [])
 
     return (
       <div className="navbar">
@@ -23,7 +34,7 @@ export default function Category({recipes}) {
           </div>
           <Grid container rowSpacing={5}>
           {
-            filterByType.map((recipe) => ( 
+            recipes.map((recipe) => ( 
             <Grid item xs={12} sm={6} md={4} sx={{ padding: 1 }}>
                   <NavLink to={`./${recipe.id}`}> 
                       <Paper className="gridItem" elevation={3}>
