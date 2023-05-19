@@ -9,8 +9,7 @@ export default function Category({recipes}) {
     if (!["breakfast", "lunch", "dinner"].includes(type)){
       navigate("/oops");
     }
-
-    const filterByType = recipes?.filter((recipe) => recipe.fields.type === type); 
+    const filterByType = recipes?.filter((recipe) => recipe.type === type); 
 
     return (
       <div className="navbar">
@@ -26,15 +25,15 @@ export default function Category({recipes}) {
           {
             filterByType.map((recipe) => ( 
             <Grid item xs={12} sm={6} md={4} sx={{ padding: 1 }}>
-                  <NavLink to={`./${recipe.fields.id}`}> 
+                  <NavLink to={`./${recipe.id}`}> 
                       <Paper className="gridItem" elevation={3}>
                         <img
                           className="categoryImg"
-                          src={recipe.fields.pic.fields.file.url}
+                          src={recipe.pic}
                           alt=""
                         />
                         <Typography variant="h6" align="center">
-                          {recipe.fields.recipeTitle}
+                          {recipe.recipe_title}
                         </Typography>
                       </Paper>
                   </NavLink>

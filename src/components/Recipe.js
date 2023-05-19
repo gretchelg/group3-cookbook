@@ -7,24 +7,26 @@ import LocalDiningIcon from '@mui/icons-material/LocalDining';
 export default function Recipe({recipes, theme}) {
     const { id } = useParams();
     const navigate = useNavigate();
+
+    const singleRecipe = recipes?.find((recipe) => recipe.id === Number(id));
     
-    const singleRecipe = recipes?.find((recipe) => recipe.fields.id === id);
-    
-    if (singleRecipe?.fields.id === undefined) {
+    if (singleRecipe?.id === undefined) {
     navigate("/oops");
     }
-    console.log(singleRecipe?.fields.id)
-    const arrayofInstructions = singleRecipe?.fields.instructions.split("\n");
+
+    const arrayofInstructions = singleRecipe?.instruction.split("\r\n");
+    const arrayofIngredients = singleRecipe?.ingredients.split("\r\n");
+
 
     return (
     <> 
         <Container maxWidth="lg" sx={{display: "flex", gap: "50px", flexWrap: "wrap"}} >
             <Box flexDirection="column" marginTop="20px">
-                <img src={singleRecipe?.fields.pic.fields?.file.url} alt={singleRecipe?.fields.recipeTitle}/>
+                <img src={singleRecipe?.pic} alt={singleRecipe?.recipe_title}/>
                 <Typography variant="h5" sx={{paddingTop: "20px"}}>
                     Ingredients
                 </Typography>
-                {singleRecipe?.fields.ingredients.map ((item, index) => (
+                {arrayofIngredients?.map ((item, index) => (
                     <List key={index} disablePadding={true}>
                         <ListItem sx={{padding: "5px"}}>
                             <LocalDiningIcon sx={{color: '#FFD230'}}/><ListItemText primary={item} sx={{paddingLeft: "10px"}}/>
@@ -35,16 +37,16 @@ export default function Recipe({recipes, theme}) {
                 </Box>
                 <Box display="flex" gap="50px" flexDirection="column" maxWidth="600px">
                     <Typography variant="h3" sx={{marginTop: "50px"}}>
-                        {singleRecipe?.fields.recipeTitle}
+                        {singleRecipe?.recipe_title}
                     </Typography>
                     <Typography variant="body1">
-                        {singleRecipe?.fields.description}
+                        {singleRecipe?.description}
                     </Typography>
                         <Box display="flex" flexDirection="row" gap="50px" alignItems={"center"}>
                             <Box display="flex" gap="10px" alignItems={"center"} sx={{backgroundColor: '#FFD230', padding: "20px 10px 20px 10px"}}>
                             <AccessTimeIcon/>
                             <Typography variant='body1'>
-                            {singleRecipe?.fields.preparation}
+                            {singleRecipe?.preparation}
                             </Typography>
                             <RestaurantIcon/>
                             <Typography variant='body1'>
@@ -52,7 +54,7 @@ export default function Recipe({recipes, theme}) {
                             </Typography> 
                             </Box>
                             <Rating
-                            value={singleRecipe?.fields.rating ?? 4}
+                            value={singleRecipe?.rating ?? 4}
                             precision={0.5}
                             readOnly 
                             />
@@ -62,7 +64,6 @@ export default function Recipe({recipes, theme}) {
                     <Typography variant='h5'>
                         Instructions
                     </Typography>
-                    
                         {arrayofInstructions?.map((step, i) => (
                             <List>
                             <ListItem key={i} disablePadding={true}>

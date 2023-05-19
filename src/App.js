@@ -1,5 +1,4 @@
 import './App.css';
-import { Client } from "./Client"
 import { useState, useEffect } from 'react';
 import Recipe from "./components/Recipe";
 import { Routes, Route } from 'react-router';
@@ -34,10 +33,13 @@ function App() {
   }
 
   useEffect(() => {
-    Client.getEntries().then((data) => {
-      console.log(data.items)
-      setRecipes(data.items)
-      }).catch((error) => console.log(error));
+    const fetchData = async () => {
+    const res = await fetch("http://localhost:5001/api/allrecipes")
+    const data = await res.json();
+    console.log("point1:", data)
+    setRecipes(data)
+    }
+    fetchData();
   }, [])
 
   return (
