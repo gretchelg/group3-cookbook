@@ -1,30 +1,48 @@
 import { Box, List, ListItem, ListItemText, Typography, Container, Divider, Rating} from '@mui/material'
 import { useParams, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 
-export default function Recipe({recipes, theme}) {
-    const { id } = useParams();
+    export default function Recipe({theme}) {
+    const [recipe, setRecipe] = useState(null);
+    const { type, id } = useParams();
     const navigate = useNavigate();
-    
-    const singleRecipe = recipes?.find((recipe) => recipe.fields.id === id);
-    
-    if (singleRecipe?.fields.id === undefined) {
+
+    const fetchData = async () => {
+        const res = await fetch(`http://localhost:5001/api/${type}/${id}`)
+        const data = await res.json();
+        console.log("by id:", data)
+        const singleRecipe = data[0]
+        setRecipe(singleRecipe)
+        }
+
+    useEffect(() => {
+        fetchData();
+    }, [])
+
+    if (recipe === null) {
+        console.log("return fast", recipe)
+        return <></>
+    }
+
+    if (recipe === undefined) {
     navigate("/oops");
     }
-    console.log(singleRecipe?.fields.id)
-    const arrayofInstructions = singleRecipe?.fields.instructions.split("\n");
+
+    const arrayofInstructions = recipe?.instruction?.split("\r\n");
+    const arrayofIngredients = recipe?.ingredients?.split("\r\n");
 
     return (
     <> 
         <Container maxWidth="lg" sx={{display: "flex", gap: "50px", flexWrap: "wrap"}} >
             <Box flexDirection="column" marginTop="20px">
-                <img src={singleRecipe?.fields.pic.fields?.file.url} alt={singleRecipe?.fields.recipeTitle}/>
+                <img src={recipe?.pic} alt={recipe?.recipe_title}/>
                 <Typography variant="h5" sx={{paddingTop: "20px"}}>
                     Ingredients
                 </Typography>
-                {singleRecipe?.fields.ingredients.map ((item, index) => (
+                {arrayofIngredients?.map ((item, index) => (
                     <List key={index} disablePadding={true}>
                         <ListItem sx={{padding: "5px"}}>
                             <LocalDiningIcon sx={{color: '#FFD230'}}/><ListItemText primary={item} sx={{paddingLeft: "10px"}}/>
@@ -35,16 +53,16 @@ export default function Recipe({recipes, theme}) {
                 </Box>
                 <Box display="flex" gap="50px" flexDirection="column" maxWidth="600px">
                     <Typography variant="h3" sx={{marginTop: "50px"}}>
-                        {singleRecipe?.fields.recipeTitle}
+                        {recipe?.recipe_title}
                     </Typography>
                     <Typography variant="body1">
-                        {singleRecipe?.fields.description}
+                        {recipe?.description}
                     </Typography>
                         <Box display="flex" flexDirection="row" gap="50px" alignItems={"center"}>
                             <Box display="flex" gap="10px" alignItems={"center"} sx={{backgroundColor: '#FFD230', padding: "20px 10px 20px 10px"}}>
                             <AccessTimeIcon/>
                             <Typography variant='body1'>
-                            {singleRecipe?.fields.preparation}
+                            {recipe?.preparation}
                             </Typography>
                             <RestaurantIcon/>
                             <Typography variant='body1'>
@@ -52,7 +70,7 @@ export default function Recipe({recipes, theme}) {
                             </Typography> 
                             </Box>
                             <Rating
-                            value={singleRecipe?.fields.rating ?? 4}
+                            value={recipe?.rating ?? 4}
                             precision={0.5}
                             readOnly 
                             />
@@ -62,7 +80,6 @@ export default function Recipe({recipes, theme}) {
                     <Typography variant='h5'>
                         Instructions
                     </Typography>
-                    
                         {arrayofInstructions?.map((step, i) => (
                             <List>
                             <ListItem key={i} disablePadding={true}>

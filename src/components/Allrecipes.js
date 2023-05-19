@@ -10,10 +10,10 @@ export default function Allrecipes({recipes, theme}) {
         <div className="allrecipes-grid-container">
             {
             recipes.map((recipe) => (
-            <Link to={`./${recipe.fields.id}`}>
+            <Link to={`./${recipe?.id}`}>
                 <div className="allrecipes-grid-item">
-                    <img src={recipe.fields.pic.fields.file.url} alt={recipe.fields.recipeTitle} className="imgrecipes"  />
-                    <p style={theme? {color: '#fff'} : {color: '#000'}}>{recipe.fields.recipeTitle}</p> 
+                    <img src={recipe.pic} alt={recipe.recipe_title} className="imgrecipes"  />
+                    <p style={theme? {color: '#fff'} : {color: '#000'}}>{recipe.recipe_title}</p> 
                 </div>  
             </Link> 
             ))  
