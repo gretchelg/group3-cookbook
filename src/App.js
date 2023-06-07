@@ -32,7 +32,7 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-    const res = await fetch("http://localhost:5001/api/allrecipes")
+    const res = await fetch("https://api-cookbook.onrender.com/api/allrecipes")
     const data = await res.json();
     console.log("point1:", data)
     setRecipes(data)
