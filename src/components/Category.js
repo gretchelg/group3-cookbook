@@ -14,7 +14,7 @@ import "./Category.css";
 
     useEffect(() => {
       const fetchData = async () => {
-      const res = await fetch(`http://localhost:5001/api/${type}`)
+      const res = await fetch(`https://api-cookbook.onrender.com/api/${type}`)
       const data = await res.json();
       console.log("by type:", data)
       setRecipes(data)

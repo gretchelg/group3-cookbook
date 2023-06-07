@@ -11,7 +11,7 @@ import LocalDiningIcon from '@mui/icons-material/LocalDining';
     const navigate = useNavigate();
 
     const fetchData = async () => {
-        const res = await fetch(`http://localhost:5001/api/${type}/${id}`)
+        const res = await fetch(`https://api-cookbook.onrender.com/api/${type}/${id}`)
         const data = await res.json();
         console.log("by id:", data)
         const singleRecipe = data[0]
